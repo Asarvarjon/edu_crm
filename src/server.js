@@ -2,7 +2,7 @@ const express = require("express");
 const morgan = require("morgan");
 const routes = require("./routes");
 const app = express();
-const postgres =  require("./modules/postgres");
+const postgres =  require("./modules/pg/postgres");
 const databaseMiddleware = require("./middlewares/databaseMiddleware");
 const customErrorMiddleware = require("./middlewares/customErrorMiddleware");
 
