@@ -13,7 +13,7 @@ async function server(mode){
         })
 
         const db = await postgres()
-        databaseMiddleware(db, app)
+        await databaseMiddleware(db, app)
 
         app.use(express.json())
         app.use(express.urlencoded({extended: true}))
