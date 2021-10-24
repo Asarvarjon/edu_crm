@@ -1,5 +1,9 @@
-module.exports = async function(app){
-    
+const errorHandler = require("../helpers/errorHandler")
 
-    app.use("/users", require("./users/UserRoute"))
+module.exports = async function(app){ 
+    try {
+        app.use("/users", require("./users/UserRoute"))
+    }finally{
+        app.use(errorHandler)
+    }
 }
