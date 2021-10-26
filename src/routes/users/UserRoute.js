@@ -1,8 +1,10 @@
 const { SignInController, CreateUserController } = require("../../controllers/UserRouteController");
+const authMiddleware = require("../../middlewares/authMiddleware");
+const permissionMiddleware = require("../../middlewares/permissionMiddleware");
 
 const UserRouter = require("express").Router();
 
 UserRouter.post("/sign_in", SignInController);
-UserRouter.post("/account", CreateUserController)
+UserRouter.post("/account", [authMiddleware, permissionMiddleware], CreateUserController)
 
 module.exports = UserRouter

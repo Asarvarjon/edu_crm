@@ -1,6 +1,8 @@
 const { Sequelize } = require("sequelize");
+const PermissionModel = require("../../models/PermissionModel");
 const SessionsModel = require("../../models/SessionsModel");
 const UserModel = require("../../models/UserModel");
+const UserPermissionModel = require("../../models/UserPermissionModel");
 const init = require("./init");
 const relations = require("./relations");
 
@@ -18,11 +20,13 @@ module.exports = async function(){
         let db = {}; 
         db.users = await UserModel(sequelize, Sequelize);
         db.sessions = await SessionsModel(sequelize, Sequelize);
+        db.permissions = await PermissionModel(sequelize, Sequelize);
+        db.user_permissions = await UserPermissionModel(sequelize, Sequelize)
 
         await relations(db);
         await init(db);
 
-        await sequelize.sync()
+        await sequelize.sync({force: false})
 
         return db;
     } catch (error) {
