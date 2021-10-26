@@ -1,8 +1,5 @@
- 
-
-module.exports = async function PermissionMiddleware(req, res, next) {
+ module.exports = async function PermissionMiddleware(req, res, next) {
     try { 
-
         const permissions = await req.db.user_permissions.findAll({
             where: {
                 user_id: req.session.user_id,

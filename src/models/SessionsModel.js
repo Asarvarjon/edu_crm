@@ -8,9 +8,7 @@
          }, 
          session_userAgent: {
              type: Sequelize.STRING,
-             allowNull: false,
-             unique: true,
-             lowercase: true
+             allowNull: false, 
          }
      })
  }

@@ -9,7 +9,7 @@ module.exports = async function AuthMiddleware(req, res, next) {
 
         if (!token) {
            throw new res.error(401, "Token is not found");
-            return;
+           return
         }
 
         token = verifyToken(token);
@@ -34,6 +34,7 @@ module.exports = async function AuthMiddleware(req, res, next) {
 
         next()
     } catch (error) {
+        
         next(error)
     }
 }
