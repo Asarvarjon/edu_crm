@@ -24,7 +24,7 @@ Request body:
 
 #### 2. User GET Endpoint
 
-`SERVER_URL/users/sign_in`
+`SERVER_URL/users/`
 
 Headers:
 `Content-Type: "application/json"`
