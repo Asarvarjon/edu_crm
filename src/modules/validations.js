@@ -28,4 +28,25 @@ module.exports = class Validation {
 			.validateAsync(data);
 	}
 
+	static async AddTeacherValidation(data, Error) {
+		return await joi
+			.object({
+				user_id: joi
+					.string()
+					.uuid()
+					.required()
+					.error(new Error(400, "Username is invalid")),
+				phone: joi
+					.string()
+					.required().
+					regex(/^998(9[012345789]|6[125679]|7[01234569])[0-9]{7}$/)
+					.error(new Error(400, "Phone is invalid")),
+				skills: joi
+					.array()
+					.items(joi.string().min(2).max(32))
+					.required(),
+			})
+			.validateAsync(data);
+	}
+
 }

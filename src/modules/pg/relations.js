@@ -39,5 +39,20 @@ module.exports = async (db) => {
             name: "permission_id",
             allowNull: false
         }
+    });
+
+
+    await db.users.hasOne(db.teachers, {
+        foreignKey: {
+            name: "user_id",
+            allowNull: false
+        }
+    })
+
+    await db.teachers.belongsTo(db.users, {
+        foreignKey: {
+            name: "user_id",
+            allowNull: false
+        }
     })
 }
