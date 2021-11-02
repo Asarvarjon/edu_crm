@@ -11,8 +11,10 @@ CourseRouter.post("/", expressFileUploadMiddleware(), CourseCreatePostController
 
 
 CourseRouter.put("/:course_id", expressFileUploadMiddleware(), CourseUpdateController);
-CourseRouter.get("/:course_id", CourseOneGetController);
 
 CourseRouter.get("/", CourseGetController);
+
+CourseRouter.get("/:course_id", CourseOneGetController);
+
 
 module.exports = CourseRouter;
