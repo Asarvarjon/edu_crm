@@ -96,4 +96,7 @@ module.exports = class TeacherController{
             data: teachers
         })
      }
+
+
+     
 }
