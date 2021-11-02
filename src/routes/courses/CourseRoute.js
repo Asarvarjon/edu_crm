@@ -1,8 +1,12 @@
+const { CourseCreatePostController } = require("../../controllers/CourseController");
 const authMiddleware = require("../../middlewares/authMiddleware");
 const permissionMiddleware = require("../../middlewares/permissionMiddleware");
 
-const CourseRoute = require("express").Router(); 
+const expressFileUploadMiddleware = require("express-fileupload")
 
-CourseRoute.use([authMiddleware, permissionMiddleware]);
+const CourseRouter = require("express").Router(); 
 
-module.exports = CourseRoute
+CourseRouter.use([authMiddleware, permissionMiddleware]);
+CourseRouter.post("/", expressFileUploadMiddleware(), CourseCreatePostController)
+
+module.exports = CourseRouter;

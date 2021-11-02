@@ -5,6 +5,7 @@ const app = express();
 const postgres =  require("./modules/pg/postgres");
 const databaseMiddleware = require("./middlewares/databaseMiddleware");
 const customErrorMiddleware = require("./middlewares/customErrorMiddleware");
+const path = require("path")
 
 
 async function server(mode){
@@ -19,6 +20,7 @@ async function server(mode){
 
         app.use(express.json())
         app.use(express.urlencoded({extended: true}))
+        app.use(express.static(path.join(__dirname, "public")))
 
         if(mode === "dev"){
             app.use(morgan("dev"))

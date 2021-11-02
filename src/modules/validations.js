@@ -49,4 +49,14 @@ module.exports = class Validation {
 			.validateAsync(data);
 	}
 
+	static async CourseCreateValidation(data, Error) {
+		return await joi
+			.object({ 
+				name: joi.string().required().min(3).max(64).error(new Error(400, "Name is invalid")), 
+				description: joi.string().required().min(64).error(new Error(400, "Description is invalid")),
+				price: joi.number().required().min(0).error(new Error(400, "Price is invalid")) 
+			})
+			.validateAsync(data);
+	}
+
 }
