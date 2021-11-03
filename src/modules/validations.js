@@ -59,4 +59,73 @@ module.exports = class Validation {
 			.validateAsync(data);
 	}
 
+	static async AddApplicantValidation(data, CustomError) {
+		return await joi
+			.object({
+				name: joi
+					.string()
+					.min(8)
+					.max(64)
+					.required()
+					.error(new CustomError(400, "Name is invalid")),
+				description: joi
+					.string()
+					.error(new CustomError(400, "Description is invalid"))
+					.min(64),
+				birth_date: joi
+					.date()
+					.error(new CustomError(400, "Date is invalid"))
+					.required(),
+				phone: joi
+					.string()
+					.required()
+					.error(new CustomError(400, "Phone is invalid"))
+					.regex(/^998(9[012345789]|6[125679]|7[01234569])[0-9]{7}$/),
+				gender: joi
+					.string()
+					.required()
+					.valid("male", "female")
+					.error(new Error("This option isn't available")),
+				source: joi
+					.string()
+					.required()
+					.error(new Error("Source is invalid")),
+			})
+			.validateAsync(data);
+	}
+
+
+	static async UpdateApplicantValidation(data, CustomError) {
+		return await joi
+			.object({
+				name: joi
+					.string()
+					.min(8)
+					.max(64)
+					.error(new CustomError(400, "Name is invalid")),
+				description: joi
+					.string()
+					.error(new CustomError(400, "Description is invalid"))
+					.min(64),
+				birth_date: joi
+					.date()
+					.error(new CustomError(400, "Date is invalid")),
+				phone: joi
+					.string()
+					.error(new CustomError(400, "Phone is invalid"))
+					.regex(/^998(9[012345789]|6[125679]|7[01234569])[0-9]{7}$/),
+				gender: joi
+					.string()
+					.valid("male", "female")
+					.error(new Error("This option isn't available")),
+				status: joi
+					.string()
+					.valid("active", "waiting", "cancelled")
+					.error(new Error("This option isn't available")),
+				source: joi.string().error(new Error("Source is invalid")),
+			})
+			.validateAsync(data);
+	}
+
 }
+
