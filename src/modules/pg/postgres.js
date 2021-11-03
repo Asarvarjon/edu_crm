@@ -1,4 +1,5 @@
 const { Sequelize } = require("sequelize");
+const ApplicantModel = require("../../models/ApplicantModel");
 const CourseModel = require("../../models/CourseModel");
 const PermissionModel = require("../../models/PermissionModel");
 const SessionsModel = require("../../models/SessionsModel");
@@ -26,6 +27,7 @@ module.exports = async function(){
         db.user_permissions = await UserPermissionModel(sequelize, Sequelize);
         db.teachers = await TeacherModel(sequelize, Sequelize);
         db.courses = await CourseModel(sequelize, Sequelize);
+        db.applicants = await ApplicantModel(sequelize, Sequelize)
 
         await relations(db);
         await init(db);
