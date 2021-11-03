@@ -13,7 +13,7 @@ Request body:
 | Name | Description | Type | Required |
 | ----------- | ----------- | ---- | --- |
 | name | Applicant name  | String | true |
-| gender | Applicant gender ["male" || "female"] | String | true |
+| gender | Applicant gender ["male" or "female"] | String | true |
 | description | Applicant Description| String | true | 
 | birth_date | Applicant birth_date| DATE | true |
 | phone | Applicant phone| String | true |
@@ -69,7 +69,7 @@ Request body:
 | Name | Description | Type | Required |
 | ----------- | ----------- | ---- | --- |
 | name | Applicant name  | String | true |
-| gender | Applicant gender ["male" || "female"] | String | true |
+| gender | Applicant gender ["male" or "female"] | String | true |
 | description | Applicant Description| String | true | 
 | birth_date | Applicant birth_date| DATE | true |
 | phone | Applicant phone| String | true |
