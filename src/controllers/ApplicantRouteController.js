@@ -57,12 +57,12 @@ module.exports = class ApplicantRouteController{
 
             const appllicant = await req.db.applicants.create({
                 applicant_name: data.name,
+                applicant_description: data.description, 
+                applicant_birth_date: data.birth_date, 
                 applicant_gender: data.gender,
-                applicant_birth_date: data.birth_date,
+                applicant_source: data.source, 
                 applicant_phone: data.phone,
-                applicant_description: data.description,
                 applicant_status: "waiting",
-                applicant_source: data.source,
                 course_id: course_id,
                 user_id: req.session.user_id
             })

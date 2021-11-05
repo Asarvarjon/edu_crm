@@ -126,6 +126,42 @@ module.exports = class Validation {
 			})
 			.validateAsync(data);
 	}
+	
 
+	static async GroupCreateValidation(data, CustomError) {
+		return await joi
+			.object({ 
+				schedule: joi
+					.array()
+					.items(joi.string().min(2))
+					.required()
+					.error(new CustomError(400, "Schedule must be array")), 
+				time: joi
+					.string()
+					.required()
+					.error(new CustomError(400, "Time is invalid")),
+				lesson_duration: joi
+					.number()
+					.required() 
+					.error(new Error("Lesson Duration is invalid")),
+				status: joi
+					.string()
+					.required() 
+					.error(new Error("Status is invalid")),
+				course_duration: joi
+					.number()
+					.required()
+					.error(new Error("Course duration is invalid")),
+				teacher_id: joi
+					.string()
+					.required()
+					.error(new CustomError(400, "Teacher id invalid")),
+				course_id: joi
+					.string()
+					.required()
+					.error(new CustomError(400, "Course_id id invalid"))
+			})
+			.validateAsync(data);
+	}
 }
 

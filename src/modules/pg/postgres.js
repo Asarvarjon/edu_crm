@@ -1,6 +1,8 @@
 const { Sequelize } = require("sequelize");
 const ApplicantModel = require("../../models/ApplicantModel");
 const CourseModel = require("../../models/CourseModel");
+const GroupModel = require("../../models/GroupModel");
+const GroupStudentsModel = require("../../models/GroupStudentsModel");
 const PermissionModel = require("../../models/PermissionModel");
 const SessionsModel = require("../../models/SessionsModel");
 const TeacherModel = require("../../models/TeacherModel");
@@ -27,12 +29,17 @@ module.exports = async function(){
         db.user_permissions = await UserPermissionModel(sequelize, Sequelize);
         db.teachers = await TeacherModel(sequelize, Sequelize);
         db.courses = await CourseModel(sequelize, Sequelize);
-        db.applicants = await ApplicantModel(sequelize, Sequelize)
+        db.applicants = await ApplicantModel(sequelize, Sequelize);
+        db.groups = await GroupModel(sequelize, Sequelize);
+        db.group_students = await GroupStudentsModel(sequelize, Sequelize)
 
+        //  await db.group_students.sync({force: true})
+         
         await relations(db);
         await init(db);
 
         await sequelize.sync({force: false})
+
 
         return db;
     } catch (error) {

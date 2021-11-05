@@ -4,7 +4,7 @@ module.exports = async (sequelize, Sequelize) => {
              type: Sequelize.UUID,
              defaultValue: Sequelize.UUIDV4(),
              allowNull: false,
-             primaryKey: true
+             primaryKey: true,
          },
          applicant_name: {
              type: Sequelize.STRING,
