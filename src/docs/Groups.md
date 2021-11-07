@@ -5,6 +5,7 @@
 ##### Request
 
 `SERVER_URL/groups/`
+`method = POST`
 
 Headers:
 `Content-Type: "application/json"`
@@ -33,6 +34,7 @@ Request body:
 ##### Request
 
 `SERVER_URL/groups/`
+`method = GET` 
 
 Headers:
 `Content-Type: "application/json"`
@@ -69,6 +71,7 @@ Query body:
 ##### Request
 
 `SERVER_URL/groups/:group_name`
+`method = PUT` 
 
 Headers:
 `Content-Type: "application/json"`
@@ -147,6 +150,7 @@ Request body:
 ##### Request
 
 `SERVER_URL/groups/students/:group_name`
+`method = GET`
 
 Headers:
 `Content-Type: "application/json"`
