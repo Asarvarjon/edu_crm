@@ -163,5 +163,22 @@ module.exports = class Validation {
 			})
 			.validateAsync(data);
 	}
+
+	
+
+	static async AddApllicantToGroupValidation(data, CustomError){
+		return await joi
+			.object({  
+				applicant_id: joi
+					.string()
+					.required()
+					.error(new CustomError(400, "Applicant id invalid")),
+				group_id: joi
+					.string()
+					.required()
+					.error(new CustomError(400, "Group id invalid"))
+			})
+			.validateAsync(data);
+	}
 }
 

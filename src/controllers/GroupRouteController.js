@@ -1,6 +1,6 @@
 const permissionChecker = require("../helpers/permissionChecker");
 const {
-    GroupCreateValidation
+    GroupCreateValidation, AddApplicantValidation
 } = require("../modules/validations");
 
 module.exports = class GroupRouteController {
@@ -115,14 +115,13 @@ module.exports = class GroupRouteController {
             const {
                 applicant_id,
                 group_id
-            } = req.body;
+            } = AddApplicantValidation(req.body, res.error)
 
             const new_student = await req.db.group_students.create({
                 group_student_id: applicant_id,
                 group_id: group_id
             });
-
-            console.log(new_student);
+ 
 
             await req.db.applicants.update({
                 applicant_status: "active"
