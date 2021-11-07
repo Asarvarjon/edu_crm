@@ -6,6 +6,11 @@ module.exports = async (sequelize, Sequelize) => {
 			primaryKey: true,
 			autoIncrement: true,
 		},
+		group_name: {
+			type: Sequelize.STRING(8),
+			allowNull: false, 
+			unique: true
+		},
 		group_time: {
 			type: Sequelize.STRING(5),
 			allowNull: false,

@@ -9,9 +9,20 @@ module.exports = class GroupRouteController {
             permissionChecker("admin", req.user_permissions, res.error);
             const data = await GroupCreateValidation(req.body, res.error);
 
+
+            function getRandomName(length) {
+                var randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+                var result = '';
+                for ( var i = 0; i < length; i++ ) {
+                    result += randomChars.charAt(Math.floor(Math.random() * randomChars.length));
+                }
+                return result;
+            }
+
             const group = await req.db.groups.create({
                 group_time: data.time,
                 group_status: data.status,
+                group_name: getRandomName(8),
                 group_lesson_duration: data.lesson_duration,
                 group_course_duration: data.course_duration,
                 group_schedule: data.schedule,
@@ -39,15 +50,15 @@ module.exports = class GroupRouteController {
             permissionChecker("admin", req.user_permissions, res.error);
             const data = await GroupCreateValidation(req.body, res.error);
 
-            const group_id = req.params.group_id;
+            const group_name = req.params.group_name;
 
             const group = await req.db.groups.findOne({
                 where: [
-                    group_id
+                    group_name
                 ]
             });
 
-            if (!group_id) throw new error("Group not found");
+            if (!group) throw new error("Group not found");
 
             await req.db.groups.update({
                 group_time: data.time,
@@ -58,11 +69,9 @@ module.exports = class GroupRouteController {
 
             }, {
                 where: {
-                    group_id,
+                    group_name,
                 }
-            })
-
-            console.log(group);
+            }) 
 
             res.status(201).json({
                 ok: true,
@@ -191,12 +200,12 @@ module.exports = class GroupRouteController {
         try {
             permissionChecker("admin", req.user_permissions, res.error);
 
-            const group_id = req.params.group_id;
+            const group_name = req.params.group_name;
 
             const students = await req.db.group_students.findAll({
                 raw: true,
                 where:{
-                    group_id: group_id
+                    group_name: group_name
                 },
                 include: {
                     model: req.db.applicants

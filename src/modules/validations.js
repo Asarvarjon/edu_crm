@@ -139,7 +139,7 @@ module.exports = class Validation {
 				time: joi
 					.string()
 					.required()
-					.error(new CustomError(400, "Time is invalid")),
+					.error(new CustomError(400, "Time is invalid")), 
 				lesson_duration: joi
 					.number()
 					.required() 
