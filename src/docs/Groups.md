@@ -32,7 +32,7 @@ Request body:
 
 ##### Request
 
-`SERVER_URL/Groups/`
+`SERVER_URL/groups/`
 
 Headers:
 `Content-Type: "application/json"`
@@ -49,46 +49,30 @@ Query body:
 
 ##### Response status codes
 
-`200 - OK`
-`500 - Internal Server Error`
 
 
-#### 3. Group One Get Endpoint
+#### Success
+ 
+    `200 - OK`
+    `500 - Internal Server Error`
 
-##### Request
-
-`SERVER_URL/Groups/:Group_id`
-
-Headers:
-`Content-Type: "application/json"`
-`Authorization: "TOKEN"`
-
-Permissions:
-`Admin`
-
-Query body:
-| Name | Default | Type | Required |
-| ----------- | ----------- | ---- | --- |
-| limit | 15 | Number | false |
-| offset | 0 | Number | false |
+    {
+       ok: true,
+       message: "Succesfully created",
+       data: {
+           groups
+       }
+    }
 
 
-Request body:
-| Name | Description | Type | Required |
-| ----------- | ----------- | ---- | --- |
-| Group_id | Group UUID  | UUID | true |
+ 
+ 
 
-##### Response status codes
-
-`200 - OK`
-`500 - Internal Server Error`
-
-
-#### 4. Group Update Put Endpoint
+#### 3. Group Update Put Endpoint
 
 ##### Request
 
-`SERVER_URL/teachers/:teacher_id`
+`SERVER_URL/groups/:group_name`
 
 Headers:
 `Content-Type: "application/json"`
@@ -96,11 +80,13 @@ Headers:
 Request body:
 | Name | Description | Type | Required |
 | ----------- | ----------- | ---- | --- |
-| name | Group name  | String | true |
-| description | Group Description | String | true |
-| price | Group Price| String | true | 
-| photo | Group Photo| File | true |
-| Group_id | Group's unique UUID(req.params.teacher_id)| String | true |
+| time | Group time (o'clock)  | String | true |
+| status | ["active", "waiting", "cancelled"] | String | true |
+| lesson_duration | Group lesson_duration| INT | true | 
+| course_duration | Group_duration| INT | true |
+| schedule | schedule of group| Array | true |
+| teacher_id | teacher_id| UUID | true |
+| course_id | course_id| UUID | true | 
 
 ##### Response status codes
 
