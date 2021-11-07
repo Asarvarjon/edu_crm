@@ -10,8 +10,7 @@ GroupRouter.post("/", GroupCreatePostController);
 GroupRouter.put("/:group_id", GroupUpdatecontroller);
 GroupRouter.post("/student", AddApplicantToGroupController);  
 
-//
-GroupRouter.put("/student/:applicant_id", UpdateStudentPutController);
+// 
 GroupRouter.delete("/student/:student_id", DeleteStudentFromGroupController);
 GroupRouter.get("/:group_id", GroupStudentsGetController)
 

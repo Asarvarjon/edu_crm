@@ -142,52 +142,7 @@ module.exports = class GroupRouteController {
             next(error)
         }
     }
-
-
-    static async UpdateStudentPutController(req, res, next) {
-        try {
-            permissionChecker("admin", req.user_permissions, res.error);
-
-            const applicant_id = req.params.applicant_id;
-
-            const student = await req.db.group_students.findOne({
-                raw: true,
-                where: {
-                    group_student_id: applicant_id
-                }
-            });
-
-            if (!student) {
-                throw new res.error("Student not found")
-            };
-
-            const new_student = await req.db.group_students.update({
-                group_student_id: applicant_id,
-                group_id: group_id
-            }, {
-                where: {
-                    group_student_id: applicant_id
-                }
-            }); 
-
-            await req.db.applicants.update({
-                applicant_status: "active"
-            }, {
-                where: {
-                    applicant_id
-                }
-            })
-
-            res.status(200).json({
-                ok: true,
-                message: "Updated succesfully"
-            })
-
-
-        } catch (error) {
-            next(error)
-        }
-    }
+ 
 
 
     static async DeleteStudentFromGroupController(req, res, next) {
@@ -243,6 +198,9 @@ module.exports = class GroupRouteController {
                 raw: true,
                 where:{
                     group_id: group_id
+                },
+                include: {
+                    model: req.db.applicants
                 }
             })
 
