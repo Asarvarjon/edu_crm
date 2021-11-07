@@ -123,12 +123,12 @@ module.exports = class GroupRouteController {
 
             const {
                 applicant_id,
-                group_id
+                group_name
             } = AddApplicantValidation(req.body, res.error)
 
             const new_student = await req.db.group_students.create({
                 group_student_id: applicant_id,
-                group_id: group_id
+                group_id: group_name
             });
  
 
@@ -143,10 +143,9 @@ module.exports = class GroupRouteController {
             res.status(201).json({
                 ok: true,
                 message: "Applicant added to course succesfully"
-            })
-
-
+            }) 
         } catch (error) {
+            console.log(error);
             next(error)
         }
     }

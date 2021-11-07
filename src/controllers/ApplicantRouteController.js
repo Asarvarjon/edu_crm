@@ -76,8 +76,7 @@ module.exports = class ApplicantRouteController{
 
 
               
-          } catch (error) {
-              console.log(error);
+          } catch (error) { 
               next(error)
           }
       }

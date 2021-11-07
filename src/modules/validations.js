@@ -170,8 +170,7 @@ module.exports = class Validation {
 		return await joi
 			.object({  
 				applicant_id: joi
-					.string()
-					.required()
+					.string() 
 					.error(new CustomError(400, "Applicant id invalid")),
 				group_id: joi
 					.string()

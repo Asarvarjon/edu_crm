@@ -33,12 +33,13 @@ module.exports = async function(){
         db.groups = await GroupModel(sequelize, Sequelize);
         db.group_students = await GroupStudentsModel(sequelize, Sequelize)
 
-        //  await db.group_students.sync({force: true})
+          
+         
          
         await relations(db);
         await init(db);
 
-        await sequelize.sync({force: true})
+        await sequelize.sync({force: false})
 
 
         return db;

@@ -4,6 +4,7 @@ module.exports = async (sequelize, Sequelize) => {
 			type: Sequelize.UUID,
 			allowNull: false,
 			primaryKey: true, 
+			defaultValue: Sequelize.UUIDV4()
 		},
 	});
 };

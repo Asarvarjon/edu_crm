@@ -108,8 +108,8 @@ Headers:
 Request body:
 | Name | Description | Type | Required |
 | ----------- | ----------- | ---- | --- | 
-| applicant_id | teacher_id| UUID | true |
-| group_id | course_id| UUID | true | 
+| applicant_id | applicant_id| UUID | true |
+| group_id | group_id| UUID | true | 
 
 
 ##### Response status codes
