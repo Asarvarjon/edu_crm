@@ -17,9 +17,7 @@ module.exports = async function init(db) {
         const set_permission = await db.user_permissions.create({
             user_id: admin.dataValues.user_id,
             permission_id: admin_permission.dataValues.permission_id,
-        });
-
-        console.log(set_permission);
+        }); 
  
     }
 }
